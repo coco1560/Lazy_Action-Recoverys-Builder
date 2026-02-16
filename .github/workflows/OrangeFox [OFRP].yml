@@ -74,18 +74,6 @@ jobs:
         sudo bash setup/android_build_env.sh
         sed -i 's/cd -/cd ../g' setup/install_android_sdk.sh
         sudo bash setup/install_android_sdk.sh
-        wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz
-        sudo tar xzf Python-2.7.18.tgz
-        cd Python-2.7.18
-        sudo ./configure --enable-optimizations
-        sudo make altinstall
-        python2.7 -V
-        ~ Python 2.7.18
-        sudo ln -sfn '/usr/local/bin/python2.7' '/usr/bin/python2'
-        sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1
-        sudo update-alternatives --install /usr/bin/python python /usr/bin/python3  2
-        sudo update-alternatives --config python
-        python --version
 
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
@@ -119,7 +107,19 @@ jobs:
         swap-size-gb: 12
         
     - name: install py-is-py2
-      run: sudo apt-get install python-is-python2
+      run: |
+        wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz
+        sudo tar xzf Python-2.7.18.tgz
+        cd Python-2.7.18
+        sudo ./configure --enable-optimizations
+        sudo make altinstall
+        python2.7 -V
+        ~ Python 2.7.18
+        sudo ln -sfn '/usr/local/bin/python2.7' '/usr/bin/python2'
+        sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1
+        sudo update-alternatives --install /usr/bin/python python /usr/bin/python3  2
+        sudo update-alternatives --config python
+        python --version
 
     - name: Building recovery
       run: |
