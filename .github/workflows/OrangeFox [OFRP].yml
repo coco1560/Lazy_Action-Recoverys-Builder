@@ -1,28 +1,28 @@
 name: OrangeFox [OFRP]
 
-于:
+on:
   workflow_dispatch:
     inputs:
       SYNC_URL:
         description: 'SYNC_URL'
         required: true
-        默认: 'https://github.com/momo54181/sync.git'
+        default: 'https://github.com/momo54181/sync.git'
       MANIFEST_BRANCH:
         description: 'MANIFEST_BRANCH'
         required: true
-        默认: '9.0'
+        default: '9.0'
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
-        默认: 'https://github.com/byf3332/Xiaomi-Archimedes-device-tree'
+        default: 'https://github.com/byf3332/Xiaomi-Archimedes-device-tree'
       DEVICE_TREE_BRANCH:
         description: 'DEVICE_TREE_BRANCH'
         required: true
-        默认: 'main'
+        default: 'main'
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
-        默认: 'device/xiaomi/Archimedes'
+        default: 'device/xiaomi/Archimedes'
       COMMON_TREE_URL:
         description: 'COMMON_TREE_URL (if no common tree, leave blank)'
         required: false
@@ -32,20 +32,20 @@ name: OrangeFox [OFRP]
       DEVICE_NAME:
         description: 'DEVICE_NAME'
         required: true
-        默认: 'Archimedes'
+        default: 'Archimedes'
       MAKEFILE_NAME:
         description: 'MAKEFILE_NAME'
         required: true
-        默认: 'omni_Archimedes'
+        default: 'omni_Archimedes'
       BUILD_TARGET:
         description: 'BUILD_TARGET'
         required: true
-        默认: 'recovery'
+        default: 'recovery'
 
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
